@@ -65,9 +65,9 @@ class TSL2561:
         ch0, ch1 = self.read_broadband(), self.read_infrared()
         if ch0 == 0:
             return None
-        if ch0 > _CLIP_THRESHOLD[self.integration_time]:
+        if ch0 >= _CLIP_THRESHOLD[self.integration_time]:
             return None
-        if ch1 > _CLIP_THRESHOLD[self.integration_time]:
+        if ch1 >= _CLIP_THRESHOLD[self.integration_time]:
             return None
         ratio = ch1 / ch0
         if ratio >= 0 and ratio <= 0.50:
