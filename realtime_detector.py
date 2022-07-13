@@ -20,7 +20,7 @@ class weather:
 StationId = 0
 
 # APIUrl
-APIUrl = "http://127.0.0.1:4066/api/climate/{0}".format(StationId)
+APIUrl = "http://127.0.0.1:6080/api/climate/{0}".format(StationId)
 print(APIUrl)
 
 # token 已設定raspberry專用權限，但要如何保護此token曝光要再想想！
@@ -47,7 +47,7 @@ while True:
         ## ====Read sensor signal save as params====
         # ====DHT22溫濕度計====
         # 接觸不良會讀出None, 讀取pin 4訊號源        
-        h, t = dht.read_retry(dht.DHT22, 4)
+        h, t = dht.read_retry(dht.DHT22, 16)
 
         # ====TSL25611光度計====
         # Set gain增量係數放大讀取解析度，0=1x(適合光亮), 1=16x(適合昏暗)
