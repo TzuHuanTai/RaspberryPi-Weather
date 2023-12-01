@@ -90,7 +90,7 @@ while True:
         ## ====Sending http put request and save response as object====
         header = {'Authorization':token,'Content-Type':'application/json'}
         detected = weather()
-        detected.ObsTime = dt.datetime.now().strftime('%Y-%m-%dT%H:%M:%S.%f')[:-3]+'+08:00'
+        detected.ObsTime = dt.datetime.now().strftime('%Y-%m-%dT%H:%M:%S.%f')[:-3]
         detected.Temperature = float('{0:.1f}'.format(t))
         detected.Rh = float('{0:.1f}'.format(h))
         detected.Lux = float('{0:5.0f}'.format(lux))
