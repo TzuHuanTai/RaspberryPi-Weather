@@ -4,7 +4,9 @@ import os
 import random
 import smbus
 import time
-import Adafruit_DHT as dht
+# import Adafruit_DHT as dht
+import board
+import adafruit_dht
 from tsl2561 import TSL2561
 from lcd1602 import LCD
 from paho.mqtt import client as mqtt
@@ -18,6 +20,7 @@ device_id = os.environ.get("DEVICE_ID")
 topic = f"{device_id}/weather"
 
 # Sensor initialization
+dht = adafruit_dht.DHT22(board.D16)
 bus = smbus.SMBus(1)
 tsl = TSL2561(bus)
 lcd = LCD(bus)
@@ -64,7 +67,8 @@ def connect_mqtt():
 def read_sensors():
     try:
         # Read temperature and humidity
-        h, t = dht.read_retry(dht.DHT22, 16)
+        t = dht.temperature
+        h = dht.humidity
 
         # Read light level (lux) from TSL2561 sensor
         global readLux

@@ -6,18 +6,18 @@ Show DHT22(temperature, humidity), TSL2561(illuminance) on LCD1602 monitor and p
 1. Install packages
     ```bash
     sudo apt-get install python3-pip
-    sudo pip3 install smbus Adafruit_DHT paho-mqtt
+    sudo pip3 install smbus adafruit-circuitpython-dht paho-mqtt
     ```
 
 2. Connect wires
 
     **tsl2561.py** and **lcd1605.py** are the customized drivers, hence no other drivers are required to install.
 
-    | Device  | PIN |
-    |---------|-----|
-    | DHT22   | 16  |
-    | TSL2561 | I2C |
-    | LCD1602 | I2C |
+    | Device  | PIN     |
+    |:-------:|:-------:|
+    | DHT22   | GPIO16  |
+    | TSL2561 | I2C     |
+    | LCD1602 | I2C     |
 
 ## Setup
 
@@ -42,9 +42,9 @@ Let sensors data publish to MQTT topic `${DEVICE_ID}/weather`.
     Description= Realtime detector temperature, humidity and illuminance on Raspberry pi
 
     [Service]
-    WorkingDirectory=/home/pi/IoT/RaspberryPi_Weather/
-    EnvironmentFile=/home/pi/IoT/RaspberryPi_Weather/.env
-    ExecStart=/usr/bin/python /home/pi/IoT/RaspberryPi_Weather/weather_detector.py
+    WorkingDirectory=/home/pi/IoT/RaspberryPi-Weather/
+    EnvironmentFile=/home/pi/IoT/RaspberryPi-Weather/.env
+    ExecStart=/usr/bin/python /home/pi/IoT/RaspberryPi-Weather/weather_detector.py
     Restart=always
     RestartSec=10
 
